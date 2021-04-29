@@ -65,6 +65,12 @@ const u = numbers.filter((number)=>{
 console.log(u)
 
 
+
+const t = numbers.map((number)=>{
+    return number%2 === 0
+})
+console.log(t)
+
 //includes 들어 있는지 없는지 확인// 
 
 const g = numbers.includes(3)

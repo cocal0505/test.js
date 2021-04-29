@@ -159,7 +159,11 @@ console.log(y);
 var u = numbers.filter(function (number) {
   return number % 2 === 0;
 });
-console.log(u); //includes 들어 있는지 없는지 확인// 
+console.log(u);
+var t = numbers.map(function (number) {
+  return number % 2 === 0;
+});
+console.log(t); //includes 들어 있는지 없는지 확인// 
 
 var g = numbers.includes(3);
 console.log(g);
@@ -264,7 +268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53676" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56766" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

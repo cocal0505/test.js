@@ -117,45 +117,122 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"데이터(중급)/객체.js":[function(require,module,exports) {
-var userAge = {
-  name: "heropy",
-  age: 94
-};
-var userEmail = {
-  name: "heropy",
-  email: " cocal3250@naver.com"
-};
-var target = Object.assign(userAge, userEmail, {
-  isAudlt: userAge.age < 100
-}, {
-  sex: " male"
+})({"데이터(중급)/전개연산자(spread).js":[function(require,module,exports) {
+var _console, _console2;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var fruits = ['Apple', 'banana', 'Cherry'];
+var toys1 = ['hoe', 'sds', 'king'];
+var result1 = [].concat(fruits, toys1);
+console.log(result1);
+console.log(fruits);
+
+(_console = console).log.apply(_console, fruits); /// 배열 데이터를 전개해서 문자로 반환 // 
+
+
+function toObject(a, b, c) {
+  return {
+    FruitA: a,
+    FruitB: b,
+    FruitC: c
+  };
+}
+
+console.log(toObject.apply(void 0, fruits)); // 전개한 테이터를 받아서 객체로 반환// 
+
+console.log(toObject(fruits[0], fruits[1])); // 위와 같은 결과 // 
+
+var arr1 = Object.keys(toObject.apply(void 0, fruits));
+console.log(arr1);
+var a = fruits.map(function (fruit) {
+  return {
+    name: fruit
+  };
 });
-console.log(target);
-console.log(userAge);
-console.log(target === userAge); // 새로운 메모리 주소로 객체가 저장되기 때문에 다르다.
+console.log(a); ///////////////////////////
 
-console.log(target == userAge); // const target = Object.assign ( userAge, userEmail)
-// console.log (target)
-// console.log(userAge)
-// console.log(target === userAge ) // userAge 는 target 과 같은 메모리 주소로 복사되었기 때문에 같다  // 
-// console.log(target == userAge)
+var toys = ['Apple', 'banana', 'Cherry', 'orange'];
 
-console.log("-------------------------------"); // key  배열로 형태로 만들어줌  //
+(_console2 = console).log.apply(_console2, toys); // 전개연산자//
 
-var user = {
-  name: "heropy",
-  age: 88,
-  email: " cocal3250@naver.com"
-};
-var userKeys = Object.keys(user);
-console.log(userKeys);
-var userValue = Object.values(user);
-console.log(userValue);
-var array = userKeys.map(function (key) {
-  return user[key];
-});
-console.log(array);
+
+function arr2(a, b) {
+  for (var _len = arguments.length, c = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    c[_key - 2] = arguments[_key];
+  }
+
+  // rest parameter 나머지매개변수 // 
+  return {
+    toy1: a,
+    toy2: b,
+    toy3: c
+  };
+}
+
+console.log(arr2.apply(void 0, toys)); // ...c 에 있는 것은 따로 배열로 반환 // 
+//나머지 매개 변수 //
+
+function showName() {
+  for (var _len2 = arguments.length, names = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    names[_key2] = arguments[_key2];
+  }
+
+  console.log(names);
+}
+
+showName('tom', 'bob', 'yes'); // 나머지 매개 변수를 활용해서 전달 받은 모든 수를 더해야함 //
+
+function add() {
+  var result = 0;
+
+  for (var _len3 = arguments.length, numbers = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    numbers[_key3] = arguments[_key3];
+  }
+
+  numbers.forEach(function (num) {
+    return result += num;
+  });
+  console.log(result);
+}
+
+add(1, 2, 3, 4, 5, 5, 6, 6, 7, 7); // 나머지 매개 변수를 활용해서 user 객체 생성자 함수를 만들기 // 
+
+function User(name, age) {
+  this.name = name;
+  this.age = age;
+
+  for (var _len4 = arguments.length, skills = new Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
+    skills[_key4 - 2] = arguments[_key4];
+  }
+
+  this.skills = skills;
+}
+
+var computerUser = new User('mike', 23, 'html', 'css', 'js');
+console.log(computerUser); // 전개 구문 복제  // 
+
+var arr3 = [1, 2, 3];
+var arr4 = [4, 5, 6];
+arr3 = [].concat(arr4, _toConsumableArray(arr3));
+console.log(arr3); // object.assign 대신 전개 구문 사용//
+
 var yes1 = {
   name: 'mike'
 };
@@ -164,8 +241,10 @@ var yes2 = {
 };
 var fe = ["js", "html"];
 var lang = ["English", "Korean"];
-var target1 = Object.assign({}, yes1, yes2, fe, lang);
-console.log(target1);
+user = _objectSpread(_objectSpread(_objectSpread({}, yes1), yes2), {}, {
+  skills: [].concat(fe, lang)
+});
+console.log(user);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -370,5 +449,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","데이터(중급)/객체.js"], null)
-//# sourceMappingURL=/객체.19e508c2.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","데이터(중급)/전개연산자(spread).js"], null)
+//# sourceMappingURL=/전개연산자(spread).90728d2f.js.map

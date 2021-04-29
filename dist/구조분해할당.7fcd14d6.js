@@ -117,55 +117,35 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"데이터(중급)/객체.js":[function(require,module,exports) {
-var userAge = {
-  name: "heropy",
-  age: 94
-};
-var userEmail = {
-  name: "heropy",
-  email: " cocal3250@naver.com"
-};
-var target = Object.assign(userAge, userEmail, {
-  isAudlt: userAge.age < 100
-}, {
-  sex: " male"
-});
-console.log(target);
-console.log(userAge);
-console.log(target === userAge); // 새로운 메모리 주소로 객체가 저장되기 때문에 다르다.
-
-console.log(target == userAge); // const target = Object.assign ( userAge, userEmail)
-// console.log (target)
-// console.log(userAge)
-// console.log(target === userAge ) // userAge 는 target 과 같은 메모리 주소로 복사되었기 때문에 같다  // 
-// console.log(target == userAge)
-
-console.log("-------------------------------"); // key  배열로 형태로 만들어줌  //
-
+})({"데이터(중급)/구조분해할당.js":[function(require,module,exports) {
 var user = {
   name: "heropy",
   age: 88,
   email: " cocal3250@naver.com"
 };
-var userKeys = Object.keys(user);
-console.log(userKeys);
-var userValue = Object.values(user);
-console.log(userValue);
-var array = userKeys.map(function (key) {
-  return user[key];
-});
-console.log(array);
-var yes1 = {
-  name: 'mike'
-};
-var yes2 = {
-  age: 21
-};
-var fe = ["js", "html"];
-var lang = ["English", "Korean"];
-var target1 = Object.assign({}, yes1, yes2, fe, lang);
-console.log(target1);
+var juno = user.name,
+    age = user.age,
+    email = user.email,
+    _user$address = user.address,
+    address = _user$address === void 0 ? "koera" : _user$address; // 구조를 분해 , 그리고  name 의 이름을 원하는 변수로 변경이 가능// 
+
+console.log("\uB2F9\uC2E0\uC758 \uC774\uB984\uC740 ".concat(juno, "\uC785\uB2C8\uB2E4. \uADF8\uB9AC\uACE0 \uB098\uC774\uB294 ").concat(age, " \uC774\uACE0, \uC774\uBA54\uC77C \uC8FC\uC18C\uB294 ").concat(email, " \uC785\uB2C8\uB2E4."));
+console.log(address); // 기본값을 지정할 수 있다 객체에는 값이 없다.//
+
+console.log(user['email']);
+console.log(user.age); // 배열의 구조분해할당 // 
+
+var fruits = [' apple', 'banana', 'cherry']; // const [a,b,c] = fruits
+// console.log(a,b,c)
+// const [,b] = fruits
+// console.log(b)  바나나만 뽑는 방법 
+// const [,,c] =fruits
+// console.log(c) 체리만 뽑는 방법 
+
+var fruit1 = fruits[0],
+    fruit2 = fruits[1],
+    fruit3 = fruits[2];
+console.log(fruit1);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -370,5 +350,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","데이터(중급)/객체.js"], null)
-//# sourceMappingURL=/객체.19e508c2.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","데이터(중급)/구조분해할당.js"], null)
+//# sourceMappingURL=/구조분해할당.7fcd14d6.js.map
