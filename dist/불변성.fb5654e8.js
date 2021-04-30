@@ -117,133 +117,62 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"데이터(중급)/전개연산자(spread).js":[function(require,module,exports) {
-var _console, _console2;
+})({"데이터(중급)/불변성.js":[function(require,module,exports) {
+// 데이터 불변성 (immutabililty)
+// 원시 데이터: ( 기본데이터를의미): string , number , boolean , undefined , null
+//-----------------------------------------------------------------------------------------
+// |1:            b:  1            |2:             4         |3            a:  7       |4
+//----------------------------------------------------------------------------------------
+// a 와 b 는 각가의 메모리 주소를 바라보게 된다.
+var a = 1;
+var b = 4;
+console.log(a, b, a === b);
+b = a; // a 의 메모리 주소를 b 에게 할당 
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+console.log(a, b, a === b);
+a = 7; //  a 는 3번째  새로운 메모리에 할당 
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+console.log(a, b, a === b);
+var c = 1; // 숫자 1 번을 바라보게 된다. 
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+console.log(a, b, c, b === c); // 원시형 데이터는  새롭게 만드는게 아니라 이미 존재하면 그것을 재 사용을 한다. // 
+// 원시테이터는 한번 만들어지면 변화되지 않는다. // 
+// 참조형 데이터 //
+// 참조데이터 : object, array , function
+// 선언할때 새로운 메모리에 저장된다. 
+//-----------------------------------------------------------------------------------------
+// |1:                       |2:                   |3                   |4
+//----------------------------------------------------------------------------------------
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var fruits = ['Apple', 'banana', 'Cherry'];
-var toys1 = ['hoe', 'sds', 'king'];
-var result1 = [].concat(fruits, toys1);
-console.log(result1);
-console.log(fruits);
-
-(_console = console).log.apply(_console, fruits); /// 배열 데이터를 전개해서 문자로 반환 // 
-
-
-function toObject(a, b, c) {
-  return {
-    FruitA: a,
-    FruitB: b,
-    FruitC: c
-  };
-}
-
-console.log(toObject.apply(void 0, fruits)); // 전개한 테이터를 받아서 객체로 반환// 
-
-console.log(toObject(fruits[0], fruits[1])); // 위와 같은 결과 // 
-
-var arr1 = Object.keys(toObject.apply(void 0, fruits));
-console.log(arr1);
-var a = fruits.map(function (fruit) {
-  return {
-    name: fruit
-  };
-});
-console.log(a); ///////////////////////////
-
-var toys = ['Apple', 'banana', 'Cherry', 'orange'];
-
-(_console2 = console).log.apply(_console2, toys); // 전개연산자//
-
-
-function arr2(a, b) {
-  for (var _len = arguments.length, c = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-    c[_key - 2] = arguments[_key];
-  }
-
-  // rest parameter 나머지매개변수 // 
-  return {
-    toy1: a,
-    toy2: b,
-    toy3: c
-  };
-}
-
-console.log(arr2.apply(void 0, toys)); // ...c 에 있는 것은 따로 배열로 반환 // 
-//나머지 매개 변수 //
-
-function showName() {
-  for (var _len2 = arguments.length, names = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    names[_key2] = arguments[_key2];
-  }
-
-  console.log(names);
-}
-
-showName('tom', 'bob', 'yes'); // 나머지 매개 변수를 활용해서 전달 받은 모든 수를 더해야함 //
-
-function add() {
-  var result = 0;
-
-  for (var _len3 = arguments.length, numbers = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-    numbers[_key3] = arguments[_key3];
-  }
-
-  numbers.forEach(function (num) {
-    return result += num;
-  });
-  console.log(result);
-}
-
-add(1, 2, 3, 4, 5, 5, 6, 6, 7, 7); // 나머지 매개 변수를 활용해서 user 객체 생성자 함수를 만들기 // 
-
-function User(name, age) {
-  this.name = name;
-  this.age = age;
-
-  for (var _len4 = arguments.length, skills = new Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
-    skills[_key4 - 2] = arguments[_key4];
-  }
-
-  this.skills = skills;
-}
-
-var computerUser = new User('mike', 23, 'html', 'css', 'js');
-console.log(computerUser); // 전개 구문 복제  // 
-
-var arr3 = [1, 2, 3];
-var arr4 = [4, 5, 6];
-arr3 = [].concat(arr4, _toConsumableArray(arr3));
-console.log(arr3); // object.assign 대신 전개 구문 사용//
-
-var yes1 = {
-  name: 'mike'
+var e = {
+  k: 1
 };
-var yes2 = {
-  age: 21
+var f = {
+  k: 1
 };
-var fe = ["js", "html"];
-var lang = ["English", "Korean"];
-user = _objectSpread(_objectSpread(_objectSpread({}, yes1), yes2), {}, {
-  skills: [].concat(fe, lang)
-});
+console.log(e, f, e === f); // 서로 다른 메모리 주소 // 
+
+e.K = 7;
+f = e; // f 는 이제 e 의 메모리 주소를 바라보게 된다. 
+
+console.log(e, f, e === f);
+e.K = 2; // f 는 e 와 같은 메모리 주소를 보고 있기 때문에 자동으로 f 의 내용도 바뀐다.// 
+
+console.log(e, f, e === f);
+var g = f;
+console.log(e, f, g, e === f);
+e.k = 9;
+console.log(e, f, g, e === f);
+var a1 = {
+  name: "juno"
+};
+var b1 = {
+  name: "juno"
+};
+console.log(a1 === b1);
+a1.name = "bob";
+b1 = a1;
+console.log(a1, b1, a1 === b1);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -272,7 +201,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65033" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54199" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -448,5 +377,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","데이터(중급)/전개연산자(spread).js"], null)
-//# sourceMappingURL=/전개연산자(spread).90728d2f.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","데이터(중급)/불변성.js"], null)
+//# sourceMappingURL=/불변성.fb5654e8.js.map

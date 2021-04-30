@@ -106,9 +106,3 @@ user= {
     ]
 }
 
-
-console.log(user) 
-
-
-
-

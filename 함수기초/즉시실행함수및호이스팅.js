@@ -5,6 +5,14 @@ function double(){
 double();
 
 
+
+function test(x){
+    console.log(x*2)
+}
+test(2);
+
+
+
 (function (){
     console.log(a*2)
 }());
